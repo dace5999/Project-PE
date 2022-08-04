@@ -4,11 +4,10 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios"
 const Register = () => {
     const initalValues = {
-        phoneNumber: ""
     }
     const [formValue, setformValue] = useState(initalValues);
-    const [formError, setFormError] = useState(initalValues)
-    const [isSubmit, setIsSubmit] = useState(false);
+    const [formError, setFormError] = useState(initalValues);
+    const [isSubmit, setIsSubmit] = useState(true);
     const [errorMsg, setErrorMsg] = useState("");
     const [errorMsgExist, setErrorMsgExist] = useState("");
     let nevigate = useNavigate();
@@ -16,27 +15,30 @@ const Register = () => {
         nevigate(`/verifyaccount`);
     }
     const handleChange = (e) => {
-        console.log(e.target)
         const { name, value } = e.target;
+        console.log(e.target)
         setformValue({ ...formValue, [name]: value });
         console.log(formValue)
     }
     const HandleSubmit = (e) => {
         e.preventDefault()
         setFormError(validate(formValue));
-        setIsSubmit(true)
+        console.log(formError)
+        setIsSubmit(true);
         if (Object.keys(formError).length === 0 && isSubmit === true) {
-            const phoneNumber = formValue.phoneNumber;
-            console.log(phoneNumber)
+            const phoneNumber1 = formValue.phoneNumber;
             const fetchData = async () => {
                 try {
-                    const res = await axios.get(`http://localhost:5000/api/v1/Account/VerifyPhone?phoneNum=${phoneNumber}`)
+                    const res = await axios.get(`http://localhost:5000/api/v1/Account/VerifyPhone?phoneNum=${phoneNumber1}`)
                     if (res.data == "Phone number is already exist") {
+                        formError(initalValues)
                         setErrorMsgExist("Số điện thoại đã tồn tại");
                     } else if (res.data === true) {
+                        setErrorMsgExist("");
                         setErrorMsg("Đã gửi mã kích hoạt");
                     } else if (res.data == "False with sending code to phone") {
                         setErrorMsg("");
+                        setFormError("");
                         setErrorMsgExist("Không thể gửi mã kích hoạt")
                     }
                 } catch (error) {

@@ -81,20 +81,20 @@ const Search = ({ CartItem, shopItem }) => {
             </Link>
           </div>
         </div>
+        {
+          filterData.length != 0 && (
+            <div className="data-result">
+              {
+                filterData.slice(0, 5).map((values, index) => {
+                  return (
+                    <a className="data-item" href={`/product/${values.productId}`}>
+                      <p>{values.productName}</p>
+                    </a>
+                  );
+                })}
+            </div>
+          )}
       </section>
-      {
-        filterData.length != 0 && (
-          <div className="data-result">
-            {
-              filterData.slice(0, 5).map((values, index) => {
-                return (
-                  <a className="data-item" href={`/product/${values.productId}`}>
-                    <p>{values.productName}</p>
-                  </a>
-                );
-              })}
-          </div>
-        )}
     </>
   );
 };

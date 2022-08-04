@@ -9,36 +9,40 @@ import { useSelector } from "react-redux";
 const Login = () => {
   let errorLogin = useSelector((state) => state.auth.login.errormsg);
   const initalValues = {
-    username: "",
-    password: ""
   }
   const [formValue, setformValue] = useState(initalValues);
   const [formError, setFormError] = useState(initalValues)
   const [errorMsg, setErrorMsg] = useState("");
-  const [isSubmit, setisSubmit] = useState(false);
+  const [isSubmit, setisSubmit] = useState(true);
   const [username1, setUsername] = useState("");
   const [password2, setPassword] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleChange = (e) => {
     console.log(e.target)
+    setFormError(initalValues);
     const { name, value } = e.target;
     setformValue({ ...formValue, [name]: value });
     console.log(formValue)
   }
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setFormError(validate(formValue));
     setisSubmit(true);
-    if (Object.keys(formError).length === 0 && isSubmit === true) {
-      loginUser(formValue, dispatch, navigate);
-      if (errorLogin == "Invalid password") {
+    if (Object.keys(formError).length == 0 && isSubmit === true) {
+      const login = await loginUser(formValue, dispatch, navigate);
+      if (!login && errorLogin === "Invalid password") {
         setErrorMsg("Sai mật khẩu");
+      } else {
+        setErrorMsg("");
       }
+      // if (errorLogin == "Invalid password") {
+      //   setErrorMsg("Sai mật khẩu");
+      // }
     }
   }
   const validate = (values) => {
-    const errors = {};
+    let errors = {};
     if (!values.username) {
       setErrorMsg("");
       errors.username = "Vui lòng nhập số điện thoại!";
@@ -88,7 +92,7 @@ const Login = () => {
             <p className="error-warning">{formError.password}</p>
             <p className="error-warning">{errorMsg}</p>
             <div class="group-button">
-              <input type="submit" class="button" value="Đăng nhập" />
+              <input type="submit" class="button" value="Đăng nhập" onClick={console.log("Clicked")} />
             </div>
             <div class="foot-link">
               <Link to='/register'>
