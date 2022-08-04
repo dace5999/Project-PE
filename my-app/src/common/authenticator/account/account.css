@@ -1,0 +1,280 @@
+.profile{
+    display: flex;
+    margin-top: 20px;
+    background: #e6eef7;
+    height: 800px;
+    width: 1600px;
+}
+.profile .profile-background{
+    background-color: white;
+    display: inline-flex;
+    height: 800px;
+    width: 1000px;
+    margin-bottom: 25px;
+    margin-left: 250px;
+    margin-right: 200px;
+}
+.profile-background .profile-sidebar{
+    display: inline-block;
+    background-color: white;
+    height: 100%;
+    width: 22%;
+    padding-top:15px
+}
+.profile-title{
+    color: rgb(0, 0, 0);
+    font-size: 12px;
+    text-align: center;
+}
+.profile-item{
+    padding: 10px;
+    height: 40px;
+}
+.profile-item:hover{
+    background-color: #d1d1d1;
+}
+.profile-background .profile-page{
+    display: inline-block;
+    height: 100%;
+    width: 78%;
+}
+.pageorder-table-header{
+    width: 850px;
+    padding: 10px 10px 10px 10px;
+    margin-left: 20px;
+}
+
+.table-header-item1{
+    display: inline-block;
+    width: 25%;
+}
+.table-header-item2{
+    display: inline-block;
+    width: 25%;
+}
+.table-header-item3{
+    display: inline-block;
+    width: 25%;
+}
+.table-header-item4{
+    display: inline-block;
+    width: 25%;
+}
+.pageorder-table-body{
+    display: inline-block;
+    width: 850px;
+    margin-left: 20px;
+}
+.table-body-item{
+    display: inline-block;
+    width: 25%;
+    font-size: 11px;
+}
+.page-title{
+    padding-top: 20px;
+    padding-bottom: 10px;
+    font-size: 15px;
+    font-weight: bold;
+}
+.page-label-title{
+    display: inline-block;
+    font-size: 12px;
+    width: 15%;
+    padding: 5px 15px 0px;
+}
+.input-getvalue{
+    display: inline-block;
+    width: 50%;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.page-tr-table{
+    display: inline-block;
+    width: 800px;
+}
+.red-text{
+    color: red;
+}
+.gender-title{
+    font-size: 12px;
+    padding: 5px;
+}
+.form-group{
+    padding: 10px;
+}
+.province{
+    height: 10%;
+    width: 50%;
+    padding: 6px 20px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.button-update{
+    background-color: #FF6633;
+    margin-left: 15px;
+    margin-bottom: 15px;
+    padding: 15px 40px 15px 40px;
+    font-size: 15;
+    font-weight: bold;
+    color: white;
+}
+.button-verify{
+    background-color: #e0dedd;
+    margin-left: 15px;
+    margin-bottom: 15px;
+    padding: 5px;
+    font-size: 11px;
+    border-radius: 5px;
+    color: rgb(0, 0, 0);
+}
+.form-group input .gender:checked{
+    background-color: #ccc;
+}
+.blue-text{
+    margin-left: 20px;
+    font-size: 10px;
+    color: blue;
+}
+.error-warning-account{
+    margin-left: 17%;
+    width: 25%;
+	font-size: 12px;
+	color: red;
+}
+.success-message{
+	margin-left: 17%;
+    width: 20%;
+	font-size: 12px;
+	color: green;
+}
+.popup-success-update{
+    margin-left: 3%;
+    font-size: 12px;
+    color: green;
+}
+.page-label-title-long{
+    margin-top: 5px;
+    display: inline-block;
+    font-size: 12px;
+    width: 15%;
+    padding: 5px 15px 0px;
+}
+.error-warning-changepassword{
+    margin-left: 3%;
+    width: 25%;
+	font-size: 12px;
+	color: red;
+}
+.error-warning-message{
+    margin-left: 3%;
+    width: 25%;
+	font-size: 12px;
+	color: red;
+}
+.history-order{
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    margin-top: 3%;
+    width: 90%;
+}
+.history-order td, th{
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+.history-order tr:nth-child(event){
+    background-color: #f2f2f2;
+}
+.history-order th{
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #FF6633;
+  color: white;
+}
+.button-delete-order{
+    width: 100%;
+    height: 20px;
+    background-color: white
+}
+.button-delete-order:hover{
+    background-color: #FF6633;
+    color: white;
+}
+.cancel-order{
+    font-size: 12px;
+    color: green;
+    margin-left: 59%;
+}
+@media only screen and (max-width: 768px){
+    .profile {
+        display: flex;
+        margin-top: 20px;
+        background: #e6eef7;
+        height: 800px;
+        width: 390px;
+    }
+    .profile .profile-background {
+        background-color: white;
+        display: inline-flex;
+        height: 800px;
+        width: 390px;
+        margin-bottom: 25px;
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+    .page-label-title {
+        display: inline-block;
+        font-size: 9px;
+        width: 25%;
+        padding: 5px 15px 0px;
+    }
+    .blue-text {
+        margin-left: 10px;
+        font-size: 5px;
+        color: blue;
+    }
+    .page-label-title-long {
+        margin-top: 5px;
+        display: inline-block;
+        font-size: 7px;
+        width: 25%;
+        padding: 5px 15px 0px;
+    }
+    .error-warning-account {
+        margin-left: 27%;
+        width: 25%;
+        font-size: 7px;
+        color: red;
+    }
+    .error-warning-changepassword {
+        margin-left: 10%;
+        width: 25%;
+        font-size: 7px;
+        color: red;
+    }
+    .popup-success-update {
+        margin-left: 10%;
+        width: 25%;
+        font-size: 7px;
+        color: green;
+    }
+    .button-verify {
+        background-color: #e0dedd;
+        margin-left: 5px;
+        margin-bottom: 15px;
+        padding: 5px;
+        font-size: 7px;
+        border-radius: 5px;
+        color: rgb(0, 0, 0);
+    }
+    .success-message {
+        margin-left: 27%;
+        width: 30%;
+        font-size: 9px;
+        color: green;
+    }
+}

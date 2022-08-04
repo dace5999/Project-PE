@@ -1,0 +1,21 @@
+.productlist-page{
+    display: flex;
+    margin-top: 20px;
+    background: #f6f9fc;
+}
+.list-box{
+    height: 270px;
+    width: 300px;
+}
+.productlist-productbackground{
+    margin-left: 3%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.price{
+    font-size: 12px;
+}
+.rate{
+    padding-top: 5px;
+    padding-bottom: 5px;
+}

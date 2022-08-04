@@ -1,0 +1,56 @@
+.flash {
+  background: #f6f9fc;
+  padding: 50px 0;
+}
+.product.mtop img{
+    display: initial;
+    height: 120px;
+    width: 120px;
+}
+@media only screen and (max-width: 768px){
+  .f_flex {
+    display: flex;
+    font-size: 12px;
+  }
+  .control-btn .prev {
+    left: -20px;
+    margin-left: 10px;
+  }
+  .control-btn .next {
+    right: -20px;
+    margin-right: 10px;
+  }
+  .box span {
+    font-size: 4px;
+  }
+  .product.mtop img{
+    display: initial;
+    height: 70px;
+    width: 20px;
+  }
+  .product-details h3 {
+    font-size: 7px;
+    height: 20px;
+    width: 50px;
+  }
+  .product .rate i {
+    font-size: 2px;
+    color: #ffcd4e;
+    margin: 1px;
+  }
+  .box h4 {
+    height: 40px;
+    width: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 15px;
+    -webkit-line-clamp: 2;
+    margin-top: 5px;
+    font-size: 7px;
+  }
+  .f_flex {
+    display: flex;
+    font-size: 18px;
+    width: 550px;
+  }
+}
