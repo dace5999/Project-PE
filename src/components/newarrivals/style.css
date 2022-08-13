@@ -7,9 +7,7 @@
   font-weight: 400;
 }
 .NewArrivals span {
-  color: blueviolet;
-  font-size: 15px;
-  font-weight: 500;
+  font-size: 14px;
 }
 .NewArrivals .box img {
   width: 100%;
@@ -23,6 +21,7 @@
 .box .N-price ,.box .D-price{
   color: #c10017;
   font-size: 12px;
+  font-weight: bold;
 }
 .box h4 {
   height: 50px;

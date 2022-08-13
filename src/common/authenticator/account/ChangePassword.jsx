@@ -14,6 +14,7 @@ const ChangePassword = () => {
     const [formErrorPwC, setFormErrorPwc] = useState("");
     const [successMsg, setSuccessMsg] = useState("");
     const [errorMsg, setErrorMsg] = useState("")
+    const [isSubmit, setIsSubmit] = useState(false);
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -35,11 +36,14 @@ const ChangePassword = () => {
     const UpdateClick = (e) => {
         e.preventDefault();
         setFormError(validate(ChangePassword));
+        setIsSubmit(true);
+    }
+    useEffect(() => {
         if (ChangePassword.newPassword != passwordConf) {
             setFormErrorPwc("Xác nhận mật khẩu phải giống với mật khẩu mới");
         } else if (!passwordConf && ChangePassword.newPassword != passwordConf) {
             setFormErrorPwc("Xác nhận mật khẩu phải giống với mật khẩu mới");
-        } else if (Object.keys(formError).length === 0 && !formErrorPwC) {
+        } else if (Object.keys(formError).length === 0 && !formErrorPwC && isSubmit === true) {
             const fetchData = async () => {
                 try {
                     const res = await axios.post(`http://localhost:5000/api/v1/Account/ChangePassword`, ChangePassword);
@@ -56,7 +60,7 @@ const ChangePassword = () => {
             }
             fetchData()
         }
-    }
+    }, [formError])
     const validate = (values) => {
         const errors = {};
         if (!values.oldPassword) {
@@ -83,17 +87,17 @@ const ChangePassword = () => {
                     <form onSubmit={UpdateClick}>
                         <div className="form-group">
                             <label className="page-label-title">Mật khẩu cũ<span className="red-text">*</span></label>
-                            <input className="input-getvalue" onChange={(e) => setPasswordOld(e.target.value)} />
+                            <input type="password" className="input-getvalue" onChange={(e) => setPasswordOld(e.target.value)} />
                         </div>
                         <p className="error-warning-account">{formError.oldPassword}</p>
                         <div className="form-group">
                             <label className="page-label-title-long">Mật khẩu mới<span className="red-text">*</span></label>
-                            <input className="input-getvalue" onChange={(e) => setPasswordNew(e.target.value)} />
+                            <input type="password" className="input-getvalue" onChange={(e) => setPasswordNew(e.target.value)} />
                         </div>
                         <p className="error-warning-account">{formError.newPassword}</p>
                         <div className="form-group">
                             <label className="page-label-title-long">Xác nhận mật khẩu mới<span className="red-text">*</span></label>
-                            <input className="input-getvalue" onChange={(e) => setPasswordConf(e.target.value)} />
+                            <input type="password" className="input-getvalue" onChange={(e) => setPasswordConf(e.target.value)} />
                         </div>
                         <p className="error-warning-account">{formErrorPwC}</p>
                         <div className="form-group">

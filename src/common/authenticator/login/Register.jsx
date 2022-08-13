@@ -1,13 +1,14 @@
-import { React, useState } from "react";
+import { React, useEffect, useState } from "react";
 import RegisterApi from "../../../api/RegisterApi";
 import { useNavigate } from "react-router-dom";
 import axios from "axios"
 const Register = () => {
     const initalValues = {
+        phoneNumber: ""
     }
     const [formValue, setformValue] = useState(initalValues);
     const [formError, setFormError] = useState(initalValues);
-    const [isSubmit, setIsSubmit] = useState(true);
+    const [isSubmit, setIsSubmit] = useState(false);
     const [errorMsg, setErrorMsg] = useState("");
     const [errorMsgExist, setErrorMsgExist] = useState("");
     let nevigate = useNavigate();
@@ -15,25 +16,30 @@ const Register = () => {
         nevigate(`/verifyaccount`);
     }
     const handleChange = (e) => {
+        setFormError(initalValues)
         const { name, value } = e.target;
         console.log(e.target)
         setformValue({ ...formValue, [name]: value });
         console.log(formValue)
     }
-    const HandleSubmit = (e) => {
+    const HandleSubmit = async (e) => {
         e.preventDefault()
         setFormError(validate(formValue));
-        console.log(formError)
+        console.log(formValue.phoneNumber)
         setIsSubmit(true);
-        if (Object.keys(formError).length === 0 && isSubmit === true) {
+        console.log(formError)
+
+    }
+    useEffect(() => {
+        if (Object.keys(formError).length == 0 && isSubmit === true) {
+            console.log("aaa")
             const phoneNumber1 = formValue.phoneNumber;
             const fetchData = async () => {
                 try {
                     const res = await axios.get(`http://localhost:5000/api/v1/Account/VerifyPhone?phoneNum=${phoneNumber1}`)
                     if (res.data == "Phone number is already exist") {
-                        formError(initalValues)
                         setErrorMsgExist("Số điện thoại đã tồn tại");
-                    } else if (res.data === true) {
+                    } else if (res.data == true) {
                         setErrorMsgExist("");
                         setErrorMsg("Đã gửi mã kích hoạt");
                     } else if (res.data == "False with sending code to phone") {
@@ -48,7 +54,7 @@ const Register = () => {
             }
             fetchData()
         }
-    }
+    }, [formError])
     const validate = (values) => {
         const errors = {};
         const regex = /^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$/;
@@ -72,7 +78,7 @@ const Register = () => {
                         Đăng Ký
                     </h5>
                     <div class="group-input">
-                        <input id="user" type="text" name="phoneNumber" class="input" className="input-form" placeholder="Nhập số điện thoại" value={formValue.phoneNumber} onChange={handleChange} />
+                        <input id="user" type="text" name="phoneNumber" className="input-form" placeholder="Nhập số điện thoại" value={formValue.phoneNumber} onChange={handleChange} />
                     </div>
                     <p className="error-warning">{formError.phoneNumber}</p>
                     <p className="verify-success">{errorMsg}</p>
@@ -83,41 +89,6 @@ const Register = () => {
                     <div className="group-button">
                         <button onClick={HandleClick} class="button">Kích hoạt tài khoản</button>
                     </div>
-                    {/* <div class="group">
-                                <label for="pass" class="label">
-                                    Mật khẩu
-                                </label>
-                                <input
-                                    id="pass"
-                                    type="password"
-                                    class="input"
-                                    data-type="password"
-                                />
-                            </div>
-                            <div class="group">
-                                <label for="pass" class="label">
-                                    Xác nhận mật khẩu
-                                </label>
-                                <input
-                                    id="pass"
-                                    type="password"
-                                    class="input"
-                                    data-type="password"
-                                />
-                            </div>
-                            <div class="group">
-                                <label for="pass" class="label">
-                                    Địa chỉ email
-                                </label>
-                                <input id="pass" type="text" class="input" />
-                            </div>
-                            <div class="group">
-                                <input type="submit" class="button" value="Đăng ký" />
-                            </div>
-                            <div class="hr1"></div>
-                            <div class="foot-lnk1">
-                                <label for="tab-1">Bạn đã có tài khoản?</label>
-                            </div> */}
                 </form>
             </section>
         </div>

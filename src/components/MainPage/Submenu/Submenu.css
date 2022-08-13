@@ -3,11 +3,12 @@
     display: block;
     list-style: none;
     box-shadow: rgb(43 52 69 / 20%) 0px 4px 16px;
-    height: 300px;
-    width: 250px;
+    height: 100%;
+    width: 300px;
     border-radius: 5px;
     padding: 15px 0;
   }
+
   .menu-items1 {
     position: relative;
     font-size: 13px;
@@ -91,7 +92,7 @@
       display: block;
       list-style: none;
       box-shadow: rgb(43 52 69 / 20%) 0px 4px 16px;
-      height: 150px;
+      height: auto;
       width: 100px;
       border-radius: 5px;
       padding: 15px 0;

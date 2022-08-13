@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useEffect, useState } from "react";
 import axios from "axios";
 const VerifyOtp = () => {
     const [otpcode, setotpcode] = useState("");
@@ -9,6 +9,7 @@ const VerifyOtp = () => {
     const [birthday, setbirthday] = useState();
     const [errorMsg, setErrorMsg] = useState("");
     const [successMsg, setSuccessMsg] = useState();
+    const [isSubmit, setIsSubmit] = useState(false);
     const Register = {
         phoneNumber: phoneNum,
         password: password,
@@ -41,13 +42,17 @@ const VerifyOtp = () => {
         e.preventDefault();
         setformError(validate(Register));
         console.log(Register.dateofbirth);
-        if (Object.keys(formError).length === 0) {
+        setIsSubmit(true);
+    }
+    useEffect(() => {
+        if (Object.keys(formError).length === 0 && isSubmit === true) {
             const fetchData = async () => {
                 try {
                     const res = await axios.post(`http://localhost:5000/api/v1/Account/RegisterCustomer?code=${otpcode}`, Register)
                     if (res.data == "Code Valid False") {
                         setErrorMsg("Sai mã xác thực");
                     } else if (res.data === true) {
+                        setErrorMsg("")
                         setSuccessMsg("Đăng ký thành công");
                     }
                 } catch (error) {
@@ -56,7 +61,7 @@ const VerifyOtp = () => {
             }
             fetchData()
         }
-    }
+    }, [formError])
     const validate = (values) => {
         const errors = {};
         const regex = /^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$/;
@@ -126,7 +131,7 @@ const VerifyOtp = () => {
                         <label className="date-picker-label">Năm sinh</label>
                         <input type="date" class="datepicker" placeholder="Chọn ngày sinh" onChange={Onchangedate} />
                     </div>
-                    <p className="error-warning">{formError.dayOfBirth}</p>
+                    <p className="error-warning">{formError.dateofbirth}</p>
                     <div class="group-input-gender">
                         <label class="gender-label">
                             Giới tính

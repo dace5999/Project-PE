@@ -6,7 +6,7 @@ import UserAPI from "../../api/UserAPI";
 import AddressAPI from "../../api/AddressAPI";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-const Cart = ({ CartItem, addToCart, decreaseQty }) => {
+const Cart = ({ CartItem, addToCart, decreaseQty, removeToCart }) => {
   let navigate = useNavigate();
   const user = useSelector((state) => state.auth.login.currentUser);
   // Stpe: 7   calucate total of items
@@ -113,7 +113,7 @@ const Cart = ({ CartItem, addToCart, decreaseQty }) => {
                   </div>
                   <div className="cart-items-function">
                     <div className="removeCart">
-                      <button className="removeCart">
+                      <button className="removeCart" onClick={() => removeToCart(item)}>
                         <i className="fa-solid fa-xmark"></i>
                       </button>
                     </div>

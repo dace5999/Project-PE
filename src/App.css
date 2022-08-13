@@ -165,7 +165,8 @@ button {
 .product .price {
   display: flex;
   justify-content: space-between;
-  color: black;
+  color: #c10017;
+  margin-top: 8%;
 }
 .price button {
   background: none;
@@ -318,15 +319,18 @@ button {
   max-width: 1200px;
   width: 100%;
   margin: 50px auto;
+  margin-bottom: 10px;
   box-shadow: 0 0 5px #ccc;
 }
 .details {
    display: flex;
    justify-content: space-around;
+   background-color: white;
 }
 .details img{
   height: 500px;
   width: 500px;
+  padding: 10px;
 }
 .details .big-image{
   width: 500px;
@@ -336,7 +340,7 @@ button {
 }
 .details .box-detail{
   max-width: 500px;
-  min-width: 500px;
+  min-width: 50%;
   margin: 45px;
 }
 

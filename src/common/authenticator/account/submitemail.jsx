@@ -40,6 +40,11 @@ const SubmitEmail = () => {
         e.preventDefault();
         setFormError(validate(EmailChange));
         setisSubmitPhone(true);
+        setIsSubmit(false);
+        setErrorMsg("")
+        setSuccessMsg("")
+    }
+    useEffect(() => {
         if (Object.keys(formError).length === 0 && isSubmitPhone === true) {
             const FetchData = async () => {
                 try {
@@ -61,12 +66,17 @@ const SubmitEmail = () => {
             }
             FetchData()
         }
-    }
+    }, [formError])
 
     const SubmitEmail = (e) => {
         e.preventDefault();
         setFormError(validateemmail(EmailChange));
         setIsSubmit(true)
+        setisSubmitPhone(false)
+        setErrorSend("");
+        setSuccessSend("");
+    }
+    useEffect(() => {
         if (Object.keys(formError).length === 0 && isSubmit === true) {
             const FetchData = async () => {
                 try {
@@ -86,14 +96,17 @@ const SubmitEmail = () => {
             }
             FetchData()
         }
-    }
+    }, [formError])
     const validate = (values) => {
         const errors = {};
         const regexemail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
         if (!values.emailOrPhoneChange) {
+            setSuccessSend("");
             setErrorSend("");
             errors.emailOrPhoneChange = "Vui lòng nhập Email";
         } else if (!regexemail.test(values.emailOrPhoneChange)) {
+            setSuccessSend("");
+            setErrorSend("");
             errors.emailOrPhoneChange = "Vui lòng nhập đúng định dạng email"
         }
         return errors;
@@ -103,13 +116,20 @@ const SubmitEmail = () => {
         const regexemail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
         if (!values.emailOrPhoneChange) {
             setErrorSend("");
+            setSuccessSend("");
             errors.emailOrPhoneChange = "Vui lòng nhập Email";
         } else if (!regexemail.test(values.emailOrPhoneChange)) {
+            setSuccessSend("");
+            setErrorSend("");
             errors.emailOrPhoneChange = "Vui lòng nhập đúng định dạng email"
         }
         if (!values.codeVerify) {
+            setSuccessSend("");
+            setErrorSend("");
             errors.codeVerify = "Vui lòng nhập mã xác thực";
         } else if (values.codeVerify.length < 6 || values.codeVerify.length > 6) {
+            setSuccessSend("");
+            setErrorSend("");
             errors.codeVerify = "Mã OTP gồm 6 ký tự"
         }
         return errors;

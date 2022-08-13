@@ -19,9 +19,11 @@ import HistoryOrder from "./common/authenticator/account/HistoryOrder"
 import SubmitPhone from "./common/authenticator/account/submitphone"
 import SubmitEmail from "./common/authenticator/account/submitemail"
 import ChangePassword from "./common/authenticator/account/ChangePassword"
-
+import ForgetPass from "./common/authenticator/login/Otpforget"
+import ChangePsForget from "./common/authenticator/login/ChangePwForget"
+const cartFromLocalStorage = JSON.parse(localStorage.getItem("cart"))
 function App() {
-  const [CartItem, setCartItem] = useState([])
+  const [CartItem, setCartItem] = useState(cartFromLocalStorage)
   const addToCart = (product) => {
     const productExit = CartItem.find((item) => item.productId === product.productId)
     if (productExit) {
@@ -29,6 +31,7 @@ function App() {
     } else {
       setCartItem([...CartItem, { ...product, qty: 1 }])
     }
+
   }
   const decreaseQty = (product) => {
 
@@ -41,8 +44,15 @@ function App() {
       setCartItem(CartItem.map((item) => (item.productId === product.productId ? { ...productExit, qty: productExit.qty - 1 } : item)))
     }
   }
+  localStorage.setItem("cart", JSON.stringify(CartItem))
+  const removeToCart = (product) => {
+    setCartItem(CartItem.filter((item) => item.productId !== product.productId))
+    localStorage.setItem("cart", JSON.stringify(CartItem))
+  }
   const [Product, setproductList] = useState([]);
-
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(CartItem))
+  }, [CartItem])
   useEffect(() => {
     const fetchCategoryList = async () => {
       try {
@@ -64,7 +74,7 @@ function App() {
           </Route>
           <Route path='/login' element={<Login />} exact>
           </Route>
-          <Route path='/cart' element={<Cart CartItem={CartItem} addToCart={addToCart} decreaseQty={decreaseQty} />} exact>
+          <Route path='/cart' element={<Cart CartItem={CartItem} addToCart={addToCart} decreaseQty={decreaseQty} removeToCart={removeToCart} />} exact>
           </Route>
           <Route path='/category/:id' element={<Productlist addToCart={addToCart} />} />
           <Route path='/product/:id' element={<ProductDetail addToCart={addToCart} />} />
@@ -76,6 +86,8 @@ function App() {
           <Route path='/submitphone' element={<SubmitPhone />} />
           <Route path='/submitemail' element={<SubmitEmail />} />
           <Route path='/changepassword' element={<ChangePassword />} />
+          <Route path='/forgotpass' element={<ForgetPass />} />
+          <Route path='/changepasswordforget/:phone' element={<ChangePsForget />} />
         </Routes>
         <Footer />
       </Router>

@@ -29,36 +29,27 @@ const ProductbySublist = ({ addToCart }) => {
         <div className="productlist-page">
             <Navbar />
             <div className="productlist-productbackground">
-                {categorylist.concat(categorylist).concat(categorylist).concat(categorylist).concat(categorylist).concat(categorylist).map((value, index) => {
+                {categorylist.map((value, index) => {
                     return (
                         <div className='list-box' key={index} >
                             <div className='product mtop'>
                                 <div className='img' style={{ textAlign: 'center' }}>
                                     {
                                         discount.map((values) => {
-                                            if (values.discountId == value.discountId) {
+                                            if (values.discountId == value.discountId && values.discountPercent == null) {
+                                            } else if (values.discountId == value.discountId) {
                                                 return <span className='discount'>{values.discountPercent}% Off</span>
+                                            } else if (!value.discountId) {
                                             }
                                         })
                                     }
                                     {/* <span className='discount'>{value.discount}% Off</span> */}
                                     <img src={value.productImageURl} alt='' style={{ width: '120px', height: '120px' }} />
-                                    <div className='product-like'>
-                                        <label>{count}</label> <br />
-                                        <i className='fa-regular fa-heart' onClick={increment}></i>
-                                    </div>
                                 </div>
                                 <div className='product-details'>
                                     <Link to={`/product/${value.productId}`}>
                                         <h3 className="product-title">{`${value.productName.replace(/^(.{30}[^\s]*).*/, "$1")}${value.productName.length > 30 ? `...` : ``}`}</h3>
                                     </Link>
-                                    <div className='rate'>
-                                        <i className='fa fa-star'></i>
-                                        <i className='fa fa-star'></i>
-                                        <i className='fa fa-star'></i>
-                                        <i className='fa fa-star'></i>
-                                        <i className='fa fa-star'></i>
-                                    </div>
                                     <div className='price'>
                                         {
                                             discount.map((values) => {

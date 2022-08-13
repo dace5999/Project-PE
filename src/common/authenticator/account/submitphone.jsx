@@ -14,13 +14,8 @@ const SubmitPhone = () => {
     const [errorMsg, setErrorMsg] = useState("");
     const [successSend, setSuccessSend] = useState("");
     const [errorSend, setErrorSend] = useState("");
-    const PhoneChange = {
-        emailOrPhoneChange: phonechange,
-        codeVerify: verifyotp,
-        phonenumber: userinfo.phonenumber
-    }
-    const [formError, setFormError] = useState(PhoneChange);
-    const [errorPhone, setErrorPhone] = useState({});
+    const [isOtp, setIsOtp] = useState(false);
+    const [isSubmit, setIsSubmit] = useState(false);
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -34,33 +29,51 @@ const SubmitPhone = () => {
         }
         fetchData();
     }, [])
+    const PhoneChange = {
+        emailOrPhoneChange: phonechange,
+        codeVerify: verifyotp,
+        phonenumber: userinfo.phonenumber
+    }
+    const [formError, setFormError] = useState(PhoneChange);
     const Changphonesubmit = (e) => {
         e.preventDefault()
         setFormError(validate(PhoneChange));
-        console.log(formError);
-        const FetchData = async () => {
-            try {
-                const res = await axios.post(`http://localhost:5000/api/v1/Account/ChangePhoneNumber`, PhoneChange, {
-                    headers: { "Authorization": `Bearer ${user.token}` }
-                })
-                console.log(res);
-                if (res.data === true) {
-                    setSuccessMsg("Thay đổi thành công");
-                } else if (res.data === false) {
-                    setErrorMsg("Thay đổi không thành công");
-                }
-
-            } catch (error) {
-                console.log("Failed to fetch data", error)
-                console.log(PhoneChange)
-            }
-        }
-        FetchData()
+        setIsSubmit(true);
+        setErrorSend("");
+        setIsOtp(false);
     }
+    useEffect(() => {
+        if (Object.keys(formError).length == 0 && isSubmit === true) {
+            const FetchData = async () => {
+                try {
+                    const res = await axios.post(`http://localhost:5000/api/v1/Account/ChangePhoneNumber`, PhoneChange, {
+                        headers: { "Authorization": `Bearer ${user.token}` }
+                    })
+                    console.log(res);
+                    if (res.data === true) {
+                        setSuccessMsg("Thay đổi thành công");
+                    } else if (res.data === false) {
+
+                        setErrorMsg("Thay đổi không thành công");
+                    }
+
+                } catch (error) {
+                    console.log("Failed to fetch data", error)
+                    console.log(PhoneChange)
+                }
+            }
+            FetchData()
+        }
+    }, [formError])
     const HandleClick = (e) => {
         e.preventDefault();
         setFormError(validatephone(PhoneChange));
-        if (Object.keys(formError).length === 0) {
+        setIsOtp(true)
+        setErrorMsg("");
+        setIsSubmit(false)
+    }
+    useEffect(() => {
+        if (Object.keys(formError).length === 0 && isOtp === true) {
             const FetchData = async () => {
                 try {
                     const res = await RegisterApi.get(phonechange)
@@ -81,29 +94,39 @@ const SubmitPhone = () => {
             }
             FetchData()
         }
-    }
+    }, [formError])
     const validatephone = (values) => {
         const errors = {};
         const regex = /^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$/;
         if (!values.emailOrPhoneChange) {
             setSuccessSend("");
+            setErrorMsg("");
             errors.emailOrPhoneChange = "Vui lòng nhập số điện thoại";
         } else if (!regex.test(values.emailOrPhoneChange)) {
             setSuccessSend("");
+            setErrorMsg("");
             errors.emailOrPhoneChange = "Vui lòng nhập đúng số điện thoại";
         }
         return errors;
     }
     const validate = (values) => {
         const errors = {};
+        const regex = /^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$/;
         if (!values.codeVerify) {
+            setSuccessSend("");
+            setErrorMsg("");
             errors.codeVerify = "Vui lòng nhập mã xác thực";
         } else if (values.codeVerify.length < 6 || values.codeVerify.length > 6) {
+            setSuccessSend("");
+            setErrorMsg("");
             errors.codeVerify = "Mã OTP gồm 6 ký tự"
         }
         if (!values.emailOrPhoneChange) {
             setSuccessSend("");
+            setErrorMsg("");
             errors.emailOrPhoneChange = "Vui lòng nhập số điện thoại";
+        } else if (!regex.test(values.emailOrPhoneChange)) {
+            errors.emailOrPhoneChange = "Vui lòng nhập đúng số điện thoại";
         }
         return errors;
     }

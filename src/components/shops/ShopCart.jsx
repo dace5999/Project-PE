@@ -77,29 +77,20 @@ const ShopCart = ({ shopItems, addToCart, categoryidbypro }) => {
               <div className='img-box'>
                 {
                   discount.map((values) => {
-                    if (values.discountId == productitem.discountId) {
+                    if (values.discountId == productitem.discountId && values.discountPercent == null) {
+                    } else if (values.discountId == productitem.discountId) {
                       return <span className='discount'>{values.discountPercent}% Off</span>
+                    } else if (!productitem.discountId) {
                     }
                   })
                 }
                 {/* <span className='discount'>0% Off</span> */}
                 <img src={productitem.productImageURl} alt='' className="product-img" />
-                <div className='product-like'>
-                  <label>{count}</label> <br />
-                  <i className='fa-regular fa-heart' onClick={increment}></i>
-                </div>
               </div>
               <div className='product-details'>
                 <Link to={`/product/${productitem.productId}`}>
                   <h3 className="product-title">{`${productitem.productName.replace(/^(.{30}[^\s]*).*/, "$1")}${productitem.productName.length > 30 ? `...` : ``}`}</h3>
                 </Link>
-                <div className='rate'>
-                  <i className='fa fa-star'></i>
-                  <i className='fa fa-star'></i>
-                  <i className='fa fa-star'></i>
-                  <i className='fa fa-star'></i>
-                  <i className='fa fa-star'></i>
-                </div>
                 <div className='price'>
                   {/* <h4>${productitem.price}.00 </h4> */}
                   {

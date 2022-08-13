@@ -62,35 +62,25 @@ const FlashCard = ({ productItems, addToCart }) => {
                 <div style={{ 'text-align': 'center' }}>
                   {
                     discount.map((values) => {
-                      if (values.discountId == productItems.discountId) {
+                      if (values.discountId == productItems.discountId && values.discountPercent == null) {
+                      } else if (values.discountId == productItems.discountId) {
                         return <span className="discount">{values.discountPercent}% Off</span>
+                      } else if (!productItems.discountId) {
                       }
                     })
                   }
                   <img src={productItems.productImageURl} alt="" />
-                  <div className="product-like">
-                    <label>{count}</label> <br />
-                    <i className="fa-regular fa-heart" onClick={increment}></i>
-                  </div>
                 </div>
                 <div className="product-details">
                   <Link to={`/product/${productItems.productId}`}>
                     <h3 className="product-title">{`${productItems.productName.replace(/^(.{30}[^\s]*).*/, "$1")}${productItems.productName.length > 30 ? `...` : ``}`}</h3>
                   </Link>
-                  {/* product rate */}
-                  <div className="rate">
-                    <i className="fa fa-star"></i>
-                    <i className="fa fa-star"></i>
-                    <i className="fa fa-star"></i>
-                    <i className="fa fa-star"></i>
-                    <i className="fa fa-star"></i>
-                  </div>
                   <div className="price">
                     {
                       discount.map((values) => {
                         if (values.discountId == productItems.discountId) {
                           const ab = values.discountPercent * productItems.price / 100;
-                          return <h4>{productItems.price - ab} </h4>
+                          return <h4>${productItems.price - ab} </h4>
                         }
                       })
                     }

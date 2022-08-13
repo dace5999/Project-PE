@@ -40,7 +40,7 @@ const Shop = ({ addToCart, shopItems, categorylist }) => {
             <div className='chead d_flex'>
               <h1 className="page-item-title">Category </h1>
             </div>
-            {categorylist.concat(categorylist).concat(categorylist).concat(categorylist).map((value, index) => {
+            {categorylist.map((value, index) => {
               return (
                 <div className='box f_flex' key={index}>
                   <span key={value.categoryId} onClick={(e) => HandleClick(value.categoryId)}>{value.categoryName}</span>

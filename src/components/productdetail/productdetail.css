@@ -1,0 +1,54 @@
+.detail-page{
+    background-color: #f6f9fc;
+    height: auto;
+}
+.recomfood-page{
+    width: 60%;
+    margin-left: 160px;
+    background-color:  #f6f9fc;
+    padding-bottom: 30px;
+}
+.title-foodpage{
+    margin: 1% 0% 1% 0%;
+    font-size: 15px;
+    font-weight: bold;
+}
+.infor-foodpage{
+    width: 1200px;
+    height: auto;
+    padding-bottom: 30px;
+    background-color: white;
+    box-shadow: 0 0 5px #ccc;
+}
+.title-dish{
+    padding: 10px;
+    font-size: 14px;
+    font-weight: bold;
+}
+.description-dish{
+    padding: 0px 0px 0px 10px;
+    font-size: 13px;
+}
+.ingredient-dish{
+    padding: 10px 0px 0px 10px;
+    font-size: 13px;
+    font-weight: bold;
+}
+.ul-ingre{
+    list-style-type: disc;
+    font-size: 12px;
+}
+.il-ingre{
+    padding: 10px 0px 0px 10px;
+}
+.title-guide-cooking{
+    padding: 10px 0px 0px 10px;
+    font-size: 13px;
+    font-weight: bold;
+}
+.guide-cooking{
+    padding: 10px 0px 0px 10px;
+    font-size: 13px;
+    white-space: pre;
+}
+

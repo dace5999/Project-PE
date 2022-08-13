@@ -8,9 +8,9 @@
     width: 300px;
 }
 .productlist-productbackground{
-    margin-left: 3%;
     display: flex;
     flex-wrap: wrap;
+    width: 70%;
 }
 .price{
     font-size: 12px;

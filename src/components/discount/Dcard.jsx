@@ -21,10 +21,11 @@ const Dcard = () => {
             <>
               <div className="box product" key={index}>
                 <div className="img">
+                  <span className='discount'>% Off</span>
                   <img src={value.cover} alt="" width="100%" />
                 </div>
                 <h4>{value.name}</h4>
-                <span className="D-price">{value.price}</span>
+                <span className="D-price">${value.price}</span>
               </div>
             </>
           );

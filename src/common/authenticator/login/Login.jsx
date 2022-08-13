@@ -9,16 +9,19 @@ import { useSelector } from "react-redux";
 const Login = () => {
   let errorLogin = useSelector((state) => state.auth.login.errormsg);
   const initalValues = {
+    username: "",
+    password: ""
   }
   const [formValue, setformValue] = useState(initalValues);
   const [formError, setFormError] = useState(initalValues)
   const [errorMsg, setErrorMsg] = useState("");
-  const [isSubmit, setisSubmit] = useState(true);
+  const [isSubmit, setisSubmit] = useState(false);
   const [username1, setUsername] = useState("");
   const [password2, setPassword] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleChange = (e) => {
+    setErrorMsg("");
     console.log(e.target)
     setFormError(initalValues);
     const { name, value } = e.target;
@@ -29,18 +32,28 @@ const Login = () => {
     e.preventDefault();
     setFormError(validate(formValue));
     setisSubmit(true);
-    if (Object.keys(formError).length == 0 && isSubmit === true) {
-      const login = await loginUser(formValue, dispatch, navigate);
-      if (!login && errorLogin === "Invalid password") {
-        setErrorMsg("Sai mật khẩu");
-      } else {
-        setErrorMsg("");
-      }
-      // if (errorLogin == "Invalid password") {
-      //   setErrorMsg("Sai mật khẩu");
-      // }
-    }
+
   }
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        if (Object.keys(formError).length == 0 && isSubmit === true) {
+          const login = await loginUser(formValue, dispatch, navigate);
+          if (!login && errorLogin === "Invalid password") {
+            setErrorMsg("Sai mật khẩu");
+          } else {
+            setErrorMsg("");
+          }
+          // if (errorLogin == "Invalid password") {
+          //   setErrorMsg("Sai mật khẩu");
+          // }
+        }
+      } catch (error) {
+        console.log("Failed to fetch data", error);
+      }
+    }
+    fetchData()
+  }, [formError])
   const validate = (values) => {
     let errors = {};
     if (!values.username) {
@@ -91,6 +104,7 @@ const Login = () => {
             </div>
             <p className="error-warning">{formError.password}</p>
             <p className="error-warning">{errorMsg}</p>
+            <a href="/forgotpass" className="forgetps-title">Quên mật khẩu?</a>
             <div class="group-button">
               <input type="submit" class="button" value="Đăng nhập" onClick={console.log("Clicked")} />
             </div>
