@@ -21,9 +21,9 @@ import SubmitEmail from "./common/authenticator/account/submitemail"
 import ChangePassword from "./common/authenticator/account/ChangePassword"
 import ForgetPass from "./common/authenticator/login/Otpforget"
 import ChangePsForget from "./common/authenticator/login/ChangePwForget"
-const cartFromLocalStorage = JSON.parse(localStorage.getItem("cart"))
+const localStorgareCart = JSON.parse(localStorage.getItem('cart') || '[]')
 function App() {
-  const [CartItem, setCartItem] = useState(cartFromLocalStorage)
+  const [CartItem, setCartItem] = useState(localStorgareCart)
   const addToCart = (product) => {
     const productExit = CartItem.find((item) => item.productId === product.productId)
     if (productExit) {
@@ -44,10 +44,8 @@ function App() {
       setCartItem(CartItem.map((item) => (item.productId === product.productId ? { ...productExit, qty: productExit.qty - 1 } : item)))
     }
   }
-  localStorage.setItem("cart", JSON.stringify(CartItem))
   const removeToCart = (product) => {
     setCartItem(CartItem.filter((item) => item.productId !== product.productId))
-    localStorage.setItem("cart", JSON.stringify(CartItem))
   }
   const [Product, setproductList] = useState([]);
   useEffect(() => {
