@@ -63,9 +63,20 @@ const Productlist = ({ addToCart }) => {
                                                 }
                                             })
                                         }
-                                        <button onClick={() => addToCart(value)}>
+                                        {
+                                            value.quantity == 0 ? (
+                                                <div className="sold-out-product">
+                                                    Hết hàng
+                                                </div>
+                                            ):(
+                                                <button onClick={() => addToCart(value)}>
+                                                <i className='fa fa-plus'></i>
+                                                </button>
+                                            )
+                                        }
+                                        {/* <button onClick={() => addToCart(value)}>
                                             <i className='fa fa-plus'></i>
-                                        </button>
+                                        </button> */}
                                     </div>
                                 </div>
                             </div>

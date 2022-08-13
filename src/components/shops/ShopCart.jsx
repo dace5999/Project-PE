@@ -101,9 +101,21 @@ const ShopCart = ({ shopItems, addToCart, categoryidbypro }) => {
                       }
                     })
                   }
-                  <button onClick={() => addToCart(productitem)}>
+                  {
+                    productitem.quantity == 0 ? (
+                    <div className="sold-out-product">
+                          Hết hàng
+                    </div>
+                    ):
+                    (
+                      <button onClick={() => addToCart(productitem)}>
+                      <i className='fa fa-plus'></i>
+                      </button>
+                    )
+                  }
+                  {/* <button onClick={() => addToCart(productitem)}>
                     <i className='fa fa-plus'></i>
-                  </button>
+                  </button> */}
                 </div>
               </div>
             </div>

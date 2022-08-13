@@ -84,9 +84,20 @@ const FlashCard = ({ productItems, addToCart }) => {
                         }
                       })
                     }
-                    <button onClick={() => addToCart(productItems)}>
+                    {
+                      productItems.quantity == 0 ? (
+                        <div className="sold-out-product">
+                          Hết hàng
+                        </div>
+                      ):(
+                        <button onClick={() => addToCart(productItems)}>
+                        <i className="fa fa-plus"></i>
+                        </button>
+                      ) 
+                    }
+                    {/* <button onClick={() => addToCart(productItems)}>
                       <i className="fa fa-plus"></i>
-                    </button>
+                    </button> */}
                   </div>
                 </div>
               </div>

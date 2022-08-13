@@ -48,8 +48,8 @@ const HistoryOrder = () => {
         // console.log(CartItemPost);
         const fetchData = async () => {
             try {
-                const res = await axios.post(`http://localhost:5000/api/v1/Order/UpdateOrderStatus?orderid=${order}&status=4`, '', {
-                    headers: { "Authorization": `Bearer ${user.token}` }
+                const res = await axios.delete(`http://localhost:5000/api/v1/Order/DeleteOder?id=${order}`,{
+                    headers: { 'Authorization': `Bearer ${user.token}` }
                 })
                 if (res.data === true) {
                     setStatusError("");
