@@ -40,8 +40,7 @@ const Register = () => {
                     if (res.data == "Phone number is already exist") {
                         setErrorMsgExist("Số điện thoại đã tồn tại");
                     } else if (res.data == true) {
-                        setErrorMsgExist("");
-                        setErrorMsg("Đã gửi mã kích hoạt");
+                        nevigate(`/verifyaccount/${phoneNumber1}`)
                     } else if (res.data == "False with sending code to phone") {
                         setErrorMsg("");
                         setFormError("");
@@ -85,9 +84,6 @@ const Register = () => {
                     <p className="error-warning">{errorMsgExist}</p>
                     <div className="group-button">
                         <button type="submit" class="button" >Nhận mã kích hoạt</button>
-                    </div>
-                    <div className="group-button">
-                        <button onClick={HandleClick} class="button">Kích hoạt tài khoản</button>
                     </div>
                 </form>
             </section>

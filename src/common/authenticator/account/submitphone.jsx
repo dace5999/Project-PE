@@ -51,9 +51,12 @@ const SubmitPhone = () => {
                     })
                     console.log(res);
                     if (res.data === true) {
+                        setErrorSend("")
+                        setSuccessSend("");
                         setSuccessMsg("Thay đổi thành công");
                     } else if (res.data === false) {
-
+                        setErrorSend("")
+                        setSuccessSend("");
                         setErrorMsg("Thay đổi không thành công");
                     }
 

@@ -78,7 +78,7 @@ function App() {
           <Route path='/product/:id' element={<ProductDetail addToCart={addToCart} />} />
           <Route path='/register' element={<Register />} exact></Route>
           <Route path='/subcate/:id' element={<ProductbySublist addToCart={addToCart} />} />
-          <Route path='/verifyaccount' element={<VerifyOtp />} />
+          <Route path='/verifyaccount/:phone' element={<VerifyOtp />} />
           <Route path='/account/*' element={<AccountManager />} />
           <Route path='/order' element={<HistoryOrder />} />
           <Route path='/submitphone' element={<SubmitPhone />} />

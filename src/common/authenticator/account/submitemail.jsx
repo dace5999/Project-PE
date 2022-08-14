@@ -85,7 +85,7 @@ const SubmitEmail = () => {
                     })
                     if (res.data === true) {
                         setErrorMsg("");
-                        setSuccessMsg("Đã gửi mã xác nhận");
+                        setSuccessMsg("Thay đổi thành công");
                     } else if (res.data === false) {
                         setSuccessMsg("");
                         setErrorMsg("Thay đổi không thành công")
@@ -162,7 +162,7 @@ const SubmitEmail = () => {
                         <div className="form-group">
                             <button type="submit" className="button-update">Thay đổi</button>
                         </div>
-                        <p className="success-message">{sucessMsg}</p>
+                        <p className="successsend-message">{sucessMsg}</p>
                         <p className="error-warning-message">{errorMsg}</p>
                     </form>
                 </div>

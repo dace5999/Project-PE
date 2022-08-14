@@ -35,6 +35,10 @@ const HistoryOrder = () => {
     const HandleUpdate = (order) => {
         console.log(order);
         console.log(user.token)
+        const Order = {
+            orderId: order,
+            status: 4
+        }
         // const CartItemPost = {
         //     custormerId: order.custormerId,
         //     dateCreate: order.dateCreate,
@@ -48,12 +52,13 @@ const HistoryOrder = () => {
         // console.log(CartItemPost);
         const fetchData = async () => {
             try {
-                const res = await axios.delete(`http://localhost:5000/api/v1/Order/DeleteOder?id=${order}`,{
+                const res = await axios.post(`http://localhost:5000/api/v1/Order/UpdateOrderStatus`,Order,{
                     headers: { 'Authorization': `Bearer ${user.token}` }
                 })
                 if (res.data === true) {
-                    setStatusError("");
-                    setStatusSuccess("Hủy đơn hàng thành công");
+                    // setStatusError("");
+                    // setStatusSuccess("Hủy đơn hàng thành công");
+                    window.location.href = "/order"
                 }
                 else {
                     setStatusError("Hủy đơn không thành công");

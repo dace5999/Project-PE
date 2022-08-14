@@ -1,5 +1,6 @@
 import { React, useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate, useParams } from "react-router-dom";
 const VerifyOtp = () => {
     const [otpcode, setotpcode] = useState("");
     const [phoneNum, setphoneNum] = useState("");
@@ -10,8 +11,10 @@ const VerifyOtp = () => {
     const [errorMsg, setErrorMsg] = useState("");
     const [successMsg, setSuccessMsg] = useState();
     const [isSubmit, setIsSubmit] = useState(false);
+    const {phone} = useParams();
+    let navigate = useNavigate()
     const Register = {
-        phoneNumber: phoneNum,
+        phoneNumber: phone,
         password: password,
         dateofbirth: birthday,
         gender: checked,
@@ -52,8 +55,7 @@ const VerifyOtp = () => {
                     if (res.data == "Code Valid False") {
                         setErrorMsg("Sai mã xác thực");
                     } else if (res.data === true) {
-                        setErrorMsg("")
-                        setSuccessMsg("Đăng ký thành công");
+                        navigate("/login")
                     }
                 } catch (error) {
                     console.log("Failed to fetch Data", error)
@@ -64,12 +66,6 @@ const VerifyOtp = () => {
     }, [formError])
     const validate = (values) => {
         const errors = {};
-        const regex = /^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$/;
-        if (!values.phoneNumber) {
-            errors.phoneNumber = "Vui lòng nhập số điện thoại";
-        } else if (!regex.test(values.phoneNumber)) {
-            errors.phoneNumber = "Vui lòng nhập đúng số điện thoại";
-        }
         if (!values.password) {
             errors.password = "Vui lòng nhập mật khẩu";
         } else if (values.password.length < 8) {
@@ -101,9 +97,8 @@ const VerifyOtp = () => {
                     </div>
                     <p className="error-warning">{formError.fullname}</p>
                     <div class="group-input-register">
-                        <input id="user" type="text" class="input" className="input-form-register" placeholder="Nhập số điện thoại" onChange={(e) => setphoneNum(e.target.value)} />
+                        <input id="user" type="text" class="input" className="input-form-register" placeholder="Nhập số điện thoại" defaultValue={phone} readOnly />
                     </div>
-                    <p className="error-warning">{formError.phoneNumber}</p>
                     <div class="group-input-register">
                         <input
                             id="pass"
