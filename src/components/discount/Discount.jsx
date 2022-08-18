@@ -1,12 +1,16 @@
-import React from "react"
+import React, { useState } from "react"
 import { useEffect } from "react"
+import ProductAPI from "../../api/ProductAPI"
 import Dcard from "./Dcard"
 
-const Discount = () => {
+const Discount = ({addToCart}) => {
+  const [productDis, setProductDist] = useState([])
   useEffect(() => {
     const fetchData = async () => {
       try {
-
+          const res = await ProductAPI.getProductDiscount();
+          console.log(res)
+          setProductDist(res);
       } catch (error) {
         console.log("Failed to fetch data", error)
       }
@@ -23,7 +27,7 @@ const Discount = () => {
               <h2>Big Discounts</h2>
             </div>
           </div>
-          <Dcard />
+          <Dcard product = {productDis} addToCart = {addToCart} />
         </div>
       </section>
     </>

@@ -21,5 +21,9 @@ const ProductAPI = {
         const url = '/Product/GetAllDiscount';
         return axiosClient.get(url, { params });
     },
+    getProductDiscount: (params) => {
+        const url = '/Product/GetDiscountProduct';
+        return axiosClient.get(url, { params });
+    },
 }
 export default ProductAPI;

@@ -26,7 +26,6 @@ const Cart = ({ CartItem, addToCart, decreaseQty, removeToCart }) => {
         const res = await axios.get(`http://localhost:5000/api/v1/Customer/GetCustomer?id=${user.id}`, {
           headers: { "Authorization": `Bearer ${user.token}` }
         })
-        console.log(res)
         setuserinfo(res.data);
         if (res.data.cwtId != 0) {
           const resloc = await AddressAPI.getlocationbycwt(res.data.cwtId)
@@ -38,7 +37,6 @@ const Cart = ({ CartItem, addToCart, decreaseQty, removeToCart }) => {
     }
     FecthData();
   }, [])
-  console.log(errorMsg)
   const HandleClick = (e) => {
     e.preventDefault();
     if (!userinfo.address) {
@@ -73,7 +71,6 @@ const Cart = ({ CartItem, addToCart, decreaseQty, removeToCart }) => {
             headers: { "Authorization": `Bearer ${user.token}` }
           })
           setErrorPay("Thanh toán thành công");
-          console.log(res);
         } catch (error) {
           console.log("Failed to fetch data", error)
         }

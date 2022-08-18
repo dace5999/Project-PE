@@ -29,7 +29,7 @@ const Pages = ({ productItems, addToCart, CartItem, shopItems }) => {
       <FlashDeals productItems={productItems} addToCart={addToCart} />
       <TopCate />
       <NewArrivals addToCart={addToCart} />
-      <Discount />
+      <Discount addToCart={addToCart} />
       <Shop shopItems={shopItems} addToCart={addToCart} categorylist={categorylist} />
       <Annocument />
       <Wrapper />

@@ -24,10 +24,10 @@ const DetailCart = ({ addToCart, productinfo }) => {
                 </div>
                 <div className="box-detail">
                     <div className="row">
-                        <h3>{productinfo.productName}</h3>
-                        <span>{productinfo.price}đ</span>
+                        <h4>{productinfo.productName}</h4>
                     </div>
                     <h5>{productinfo.productCode}</h5>
+                    <p>Giá: {productinfo.price}đ</p>
                     {
                         unit.map((values, index) => {
                             if (values.unitId == productinfo.unitId) {
