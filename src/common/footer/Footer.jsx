@@ -7,28 +7,16 @@ const Footer = () => {
       <footer>
         <div className="container grid2">
           <div className="box">
-            <h1>S-Sume</h1>
-            <p> Công Ty Cổ Phần Dịch Vụ Thương Mại Tổng Hợp Su-Sume.</p>
+            <h1>SSuMake</h1>
             <p>
-              Mã số doanh nghiệp: 15082022 <br /> Đăng ký lần đầu ngày 10 tháng
-              12 năm 2021, đăng ký thay đổi lần thứ 2, ngày 13 tháng 05 năm 2022
+              Mã số doanh nghiệp: 15082022 <br /> Đăng ký lần đầu ngày 17 tháng
+              5 năm 2022
             </p>
-            <div className="icon d_flex">
-              <div className="img d_flex">
-                <i class="fa-brands fa-google-play"></i>
-                <span>Google Play</span>
-              </div>
-              <div className="img d_flex">
-                <i class="fa-brands fa-app-store-ios"></i>
-                <span>App Store</span>
-              </div>
-            </div>
           </div>
-
           <div className="box">
             <h2>Về chúng tôi</h2>
             <ul>
-              <li>Giới thiệu về S-sume</li>
+              <li>Giới thiệu về SSuMake</li>
               <li>Danh sách cửa hàng</li>
               <li>Quản lý chất lượng</li>
               <li>Chính sách bảo mật và chia sẻ thông tin</li>
@@ -52,7 +40,7 @@ const Footer = () => {
                 600 Nguyễn Văn Cừ nối dài, Phường An Bình, Quận Ninh Kiều, Thành
                 Phố cần Thơ{" "}
               </li>
-              <li>Email: ssume_fpt.help@gmail.com</li>
+              <li>Email: hungnkce130351@fpt.edu.vn</li>
               <li>Tel: +84 923 678 456</li>
             </ul>
           </div>
