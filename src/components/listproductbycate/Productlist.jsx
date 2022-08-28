@@ -33,7 +33,7 @@ const Productlist = ({ addToCart }) => {
         <div className="productlist-page">
             <Navbar />
             <div className="productlist-productbackground">
-                {productlist.concat(productlist).concat(productlist).map((value, index) => {
+                {productlist.map((value, index) => {
                     return (
                         <div className='list-box' key={index}>
                             <div className='product mtop'>

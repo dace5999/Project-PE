@@ -36,7 +36,7 @@ const Register = () => {
             const phoneNumber1 = formValue.phoneNumber;
             const fetchData = async () => {
                 try {
-                    const res = await axios.get(`http://localhost:5000/api/v1/Account/VerifyPhone?phoneNum=${phoneNumber1}`)
+                    const res = await axios.get(`http://192.168.162.202:5000/api/v1/Account/VerifyPhone?phoneNum=${phoneNumber1}`)
                     if (res.data == "Phone number is already exist") {
                         setErrorMsgExist("Số điện thoại đã tồn tại");
                     } else if (res.data == true) {

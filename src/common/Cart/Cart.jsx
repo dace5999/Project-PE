@@ -23,7 +23,7 @@ const Cart = ({ CartItem, addToCart, decreaseQty, removeToCart }) => {
   useEffect(() => {
     const FecthData = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/v1/Customer/GetCustomer?id=${user.id}`, {
+        const res = await axios.get(`http://192.168.162.202:5000/api/v1/Customer/GetCustomer?id=${user.id}`, {
           headers: { "Authorization": `Bearer ${user.token}` }
         })
         setuserinfo(res.data);
@@ -67,7 +67,7 @@ const Cart = ({ CartItem, addToCart, decreaseQty, removeToCart }) => {
       console.log(adressloc)
       const FetchData = async () => {
         try {
-          const res = await axios.post(`http://localhost:5000/api/v1/Order/AddOrder`, CartItemPost, {
+          const res = await axios.post(`http://192.168.162.202:5000/api/v1/Order/AddOrder`, CartItemPost, {
             headers: { "Authorization": `Bearer ${user.token}` }
           })
           setErrorPay("Thanh toán thành công");

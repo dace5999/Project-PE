@@ -27,7 +27,7 @@ const ForgetPass = () => {
         if (Object.keys(formError).length === 0 && isSubmit === true) {
             const fetchData = async () => {
                 try {
-                    const res = await axios.get(`http://localhost:5000/api/v1/Account/VerifyPhoneChangePassword?phoneNum=${formValue.phoneNumber}`)
+                    const res = await axios.get(`http://192.168.162.202:5000/api/v1/Account/VerifyPhoneChangePassword?phoneNum=${formValue.phoneNumber}`)
                     if (res.data === true) {
                         navigate(`/changepasswordforget/${formValue.phoneNumber}`);
                         // <Link to={`/changepasswordforget${formValue.phoneNumber}`}></Link>

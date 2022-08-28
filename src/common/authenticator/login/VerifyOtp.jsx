@@ -25,7 +25,7 @@ const VerifyOtp = () => {
         e.preventDefault();
         const fetchData = async () => {
             try {
-                const res = await axios.post(`http://localhost:5000/api/v1/Account/RegisterCustomer?code=${otpcode}`, Register)
+                const res = await axios.post(`http://192.168.162.202:5000/api/v1/Account/RegisterCustomer?code=${otpcode}`, Register)
 
             } catch (error) {
                 console.log("Failed to fetch Data", error)
@@ -51,10 +51,11 @@ const VerifyOtp = () => {
         if (Object.keys(formError).length === 0 && isSubmit === true) {
             const fetchData = async () => {
                 try {
-                    const res = await axios.post(`http://localhost:5000/api/v1/Account/RegisterCustomer?code=${otpcode}`, Register)
+                    const res = await axios.post(`http://192.168.162.202:5000/api/v1/Account/RegisterCustomer?code=${otpcode}`, Register)
                     if (res.data == "Code Valid False") {
                         setErrorMsg("Sai mã xác thực");
                     } else if (res.data === true) {
+                        alert("Đăng ký thành công")
                         navigate("/login")
                     }
                 } catch (error) {

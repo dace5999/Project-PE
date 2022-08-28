@@ -6,18 +6,22 @@ import { useState } from "react";
 import { useEffect } from "react";
 import OrderAPI from "../../../api/OrderAPI";
 import axios from "axios";
+import ProductAPI from "../../../api/ProductAPI";
 const HistoryOrder = () => {
     const user = useSelector((state) => state.auth.login.currentUser);
     const [orders, setOrders] = useState([]);
     const [statusSuccess, setStatusSuccess] = useState("");
     const [statusError, setStatusError] = useState("");
+    const [productLis, setProductLis] = useState([]);
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await axios.get(`http://localhost:5000/api/v1/Order/GetAllOrderByCustomerId?id=${user.id}`, {
+                const res = await axios.get(`http://192.168.162.202:5000/api/v1/Order/GetAllOrderIncludeOderDetailbyCustomerId?id=${user.id}`, {
                     headers: { "Authorization": `Bearer ${user.token}` }
                 })
-                console.log(res.data);
+                const response = await ProductAPI.getAll()
+                console.log(response)
+                setProductLis(response)
                 setOrders(res.data);
             } catch (error) {
                 console.log("Failed to fetch Data", error)
@@ -31,6 +35,9 @@ const HistoryOrder = () => {
         2: "Đang giao hàng",
         3: "Đã nhận hàng",
         4: "Đã hủy",
+    }
+    const HandleView = (order) =>{
+        console.log(order)
     }
     const HandleUpdate = (order) => {
         console.log(order);
@@ -52,7 +59,7 @@ const HistoryOrder = () => {
         // console.log(CartItemPost);
         const fetchData = async () => {
             try {
-                const res = await axios.post(`http://localhost:5000/api/v1/Order/UpdateOrderStatus`,Order,{
+                const res = await axios.post(`http://192.168.162.202:5000/api/v1/Order/UpdateOrderStatus`,Order,{
                     headers: { 'Authorization': `Bearer ${user.token}` }
                 })
                 if (res.data === true) {
@@ -117,8 +124,10 @@ const HistoryOrder = () => {
                                             <td>{value.dateCreate}</td>
                                             <td>{value.totalPrice}</td>
                                             <td>{Season[value.status]}</td>
+                                            {/* <td><button className="button-delete-order" onClick={(e) => HandleView(value.orderId)}>Chi tiết</button></td> */}
                                             {
                                                 value.status == 0 && (
+                                                    
                                                     <td><button className="button-delete-order" onClick={(e) => HandleUpdate(value.orderId)}>Hủy đơn</button></td>
                                                 )
                                             }

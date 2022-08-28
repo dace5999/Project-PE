@@ -30,7 +30,7 @@ const AccountManager = () => {
                 const res = await AddressAPI.getAll()
                 setcountry(res);
                 if (res) {
-                    const resac = await axios.get(`http://localhost:5000/api/v1/Customer/GetCustomer?id=${user.id}`, {
+                    const resac = await axios.get(`http://192.168.162.202:5000/api/v1/Customer/GetCustomer?id=${user.id}`, {
                         headers: { "Authorization": `Bearer ${user.token}` }
                     })
                     if (resac) {
@@ -114,7 +114,7 @@ const AccountManager = () => {
         if(Object.keys(formError).length == 0 && isSubmit === true){
             const fetchdata = async () => {
                 try {
-                    const res = await axios.post(`http://localhost:5000/api/v1/Customer/CustomerChangeInfo`, User, {
+                    const res = await axios.post(`http://192.168.162.202:5000/api/v1/Customer/CustomerChangeInfo`, User, {
                         headers: { "Authorization": `Bearer ${user.token}` }
                     })
                     setErrorUpdate("Cập Nhật Thành Công");

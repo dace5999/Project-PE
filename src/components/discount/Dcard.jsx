@@ -26,7 +26,7 @@ const Dcard = ({ addToCart , product}) => {
   return (
     <>
       <Slider {...settings}>
-        {product.map((value, index) => {
+      {product.map((value, index) => {
           return (
             <>
               <div className="box product" key={index}>
