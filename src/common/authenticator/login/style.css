@@ -331,7 +331,7 @@ a {
 @media only screen and (max-width: 768px) {
   .login-page-background {
     margin-top: 20px;
-    background-image: url(http://192.168.162.202:3000/static/media/signin-signup-background.0d1f2cf….jpg);
+    background-image: url(http://localhost:3000/static/media/signin-signup-background.0d1f2cf….jpg);
     max-width: 100%;
   }
   .login-page-form {

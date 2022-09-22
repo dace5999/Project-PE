@@ -58,7 +58,7 @@ const Productlist = ({ addToCart }) => {
                                         {
                                             discount.map((values) => {
                                                 if (values.discountId == value.discountId) {
-                                                    const ab = values.discountPercent * value.price / 100;
+                                                    const ab = values.discountPercent * value.price;
                                                     return <h4 className="list-box-price">${value.price - ab}</h4>
                                                 }
                                             })

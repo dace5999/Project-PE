@@ -96,13 +96,13 @@ const ShopCart = ({ shopItems, addToCart, categoryidbypro }) => {
                   {
                     discount.map((values) => {
                       if (values.discountId == productitem.discountId) {
-                        const ab = values.discountPercent * productitem.price / 100;
+                        const ab = values.discountPercent * productitem.price;
                         return <h4>${productitem.price - ab}</h4>
                       }
                     })
                   }
                   {
-                    productitem.quantity == 0 ? (
+                    productitem.quantity < 20 ? (
                     <div className="sold-out-product">
                           Hết hàng
                     </div>

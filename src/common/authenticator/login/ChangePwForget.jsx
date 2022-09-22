@@ -34,7 +34,7 @@ const ChangePsForget = () => {
         if (Object.keys(formError).length == 0 && isSubmit === true && errorConf == "") {
             const fetchData = async () => {
                 try {
-                    const res = await axios.post(`http://192.168.162.202:5000/api/v1/Account/CheckCodeVerifyForPhone`, formValue)
+                    const res = await axios.post(`http://localhost:5000/api/v1/Account/CheckCodeVerifyForPhone`, formValue)
                     console.log(res.data)
                     if (res.data === true) {
                         navigate("/login")

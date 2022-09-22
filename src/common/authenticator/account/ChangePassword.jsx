@@ -18,7 +18,7 @@ const ChangePassword = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await axios.get(`http://192.168.162.202:5000/api/v1/Customer/GetCustomer?id=${user.id}`, {
+                const res = await axios.get(`http://localhost:5000/api/v1/Customer/GetCustomer?id=${user.id}`, {
                     headers: { "Authorization": `Bearer ${user.token}` }
                 })
                 setuserInfor(res.data);
@@ -46,7 +46,7 @@ const ChangePassword = () => {
         } else if (Object.keys(formError).length === 0 && !formErrorPwC && isSubmit === true) {
             const fetchData = async () => {
                 try {
-                    const res = await axios.post(`http://192.168.162.202:5000/api/v1/Account/ChangePassword`, ChangePassword);
+                    const res = await axios.post(`http://localhost:5000/api/v1/Account/ChangePassword`, ChangePassword);
                     if (res.data === true) {
                         setErrorMsg("");
                         setSuccessMsg("Thay đổi thành công");

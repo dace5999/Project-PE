@@ -6,7 +6,7 @@
 .Discount h4 {
   font-weight: 400;
 }
-.Discount span {
+.Discount .discount {
   font-size: 14px;
 }
 .Discount .box img {
@@ -45,6 +45,16 @@
   cursor: pointer;
   background-color: #6495ED;
   color: #fff;
+}
+.Discount .sold-out-product{
+  color: #c10017;
+  font-size: 12px;
+  margin-left: 50%;
+}
+.Discount .D-prices{
+  font-size: 14px;
+  color: #c10017;
+  font-weight: bold;
 }
 @media only screen and (max-width: 768px){
   content .grid.product .box{

@@ -19,7 +19,7 @@ const SubmitPhone = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await axios.get(`http://192.168.162.202:5000/api/v1/Customer/GetCustomer?id=${user.id}`, {
+                const res = await axios.get(`http://localhost:5000/api/v1/Customer/GetCustomer?id=${user.id}`, {
                     headers: { "Authorization": `Bearer ${user.token}` }
                 })
                 setuserinfo(res.data);
@@ -46,7 +46,7 @@ const SubmitPhone = () => {
         if (Object.keys(formError).length == 0 && isSubmit === true) {
             const FetchData = async () => {
                 try {
-                    const res = await axios.post(`http://192.168.162.202:5000/api/v1/Account/ChangePhoneNumber`, PhoneChange, {
+                    const res = await axios.post(`http://localhost:5000/api/v1/Account/ChangePhoneNumber`, PhoneChange, {
                         headers: { "Authorization": `Bearer ${user.token}` }
                     })
                     console.log(res);

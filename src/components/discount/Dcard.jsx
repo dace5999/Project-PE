@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Ddata from "./Ddata";
 import "./discountstyle.css";
 import ProductAPI from "../../api/ProductAPI";
 import {Link} from "react-router-dom"
@@ -45,12 +44,22 @@ const Dcard = ({ addToCart , product}) => {
                 <Link to={`/product/${value.productId}`}>
                 <h4>{`${value.productName.replace(/^(.{30}[^\s]*).*/, "$1")}${value.productName.length > 30 ? `...` : ``}`}</h4>
                 </Link>
-                <span className="D-price">${value.price}</span>
+                <span className="D-prices">
                 {
-                      value.quantity == 0 ? (
-                        <div className="sold-out-product">
+                      discount.map((values) => {
+                        if (values.discountId == value.discountId) {
+                          const ab = values.discountPercent * value.price;
+                          return <span className="prices">${value.price - ab} </span>
+                        }
+                      })
+                    }
+                    
+                </span>
+                {
+                      value.quantity < 10 ? (
+                        <span className="sold-out-product">
                           Hết hàng
-                        </div>
+                        </span>
                       ):(
                         <button className="button-naa" onClick={() => addToCart(value)}>
                         <i className="fa fa-plus"></i>

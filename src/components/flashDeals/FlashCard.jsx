@@ -79,13 +79,13 @@ const FlashCard = ({ productItems, addToCart }) => {
                     {
                       discount.map((values) => {
                         if (values.discountId == productItems.discountId) {
-                          const ab = values.discountPercent * productItems.price / 100;
+                          const ab = values.discountPercent * productItems.price;
                           return <h4>${productItems.price - ab} </h4>
                         }
                       })
                     }
                     {
-                      productItems.quantity == 0 ? (
+                      productItems.quantity < 20 ? (
                         <div className="sold-out-product">
                           Hết hàng
                         </div>

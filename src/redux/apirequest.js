@@ -11,7 +11,7 @@ export const loginUser = async (user, dispatch, navigate) => {
   dispatch(loginStart());
   try {
     const res = await axios.post(
-      `http://192.168.162.202:5000/api/v1/Account/Login?namePage=customerpage`,
+      `http://localhost:5000/api/v1/Account/Login?namePage=customerpage`,
       user
     );
     dispatch(loginSuccess(res.data));
